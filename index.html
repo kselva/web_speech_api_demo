@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voice Dictate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div id="app">
+
+    <!-- Header -->
+    <header class="header">
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span class="header-title">Voice Dictate</span>
+        <span class="header-badge">Web Speech API</span>
+      </div>
+    </header>
+
+    <!-- Not supported -->
+    <div id="not-supported" class="not-supported" style="display:none;">
+      <p>Speech recognition is not supported in this browser.</p>
+      <small>
+        Please use <strong>Google Chrome</strong> or <strong>Microsoft Edge</strong> on desktop or Android.<br/>
+        Safari on iOS does not support the Web Speech API.
+      </small>
+      <small style="margin-top:8px;">
+        API used: <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API" target="_blank">Web Speech API (SpeechRecognition)</a>
+      </small>
+    </div>
+
+    <!-- App body -->
+    <div id="app-body" class="body" style="display:none;">
+
+      <!-- Voice box -->
+      <div class="voice-box">
+        <!-- Mic -->
+        <div class="mic-container">
+          <div class="mic-ripple-ring hidden"></div>
+          <div class="mic-ripple-ring hidden"></div>
+          <div class="mic-ripple-ring hidden"></div>
+          <div class="mic-icon" id="mic-icon">&#127908;</div>
+        </div>
+
+        <!-- Info -->
+        <div class="voice-info">
+          <span class="voice-lang-label" id="voice-lang-label">English</span>
+          <span class="voice-interim" id="interim">Tap play to start</span>
+        </div>
+
+        <!-- Pause / Resume -->
+        <button class="btn btn-icon accent" id="btn-pause-resume" title="Resume">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5,3 19,12 5,21"/></svg>
+        </button>
+
+        <!-- Lang badge -->
+        <div class="lang-badge-wrap">
+          <button class="lang-badge" id="lang-badge">EN</button>
+          <div class="lang-popup" id="lang-popup"></div>
+        </div>
+      </div>
+
+      <!-- Error message -->
+      <div id="error-msg" style="display:none;background:#fdf0ef;border:1px solid #f5c6c2;border-radius:10px;padding:10px 14px;font-size:0.85rem;font-weight:700;color:#e74c3c;"></div>
+
+      <!-- Content box -->
+      <div class="content-box">
+        <!-- Toolbar -->
+        <div class="toolbar">
+          <span class="toolbar-left" id="word-count">0 words</span>
+          <div class="toolbar-right" id="toolbar-right">
+            <!-- punct buttons injected by JS -->
+            <div class="toolbar-divider" id="toolbar-divider" style="display:none;"></div>
+            <button class="btn btn-icon danger" id="btn-clear" title="Clear all" style="display:none;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/>
+              </svg>
+            </button>
+            <button class="btn btn-icon primary" id="btn-copy" title="Copy to clipboard" style="display:none;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Content area -->
+        <div class="content-area" id="content-area">
+          <p class="content-placeholder">Your dictated text will appear here...</p>
+        </div>
+      </div>
+
+      <!-- API info -->
+      <p class="api-info">
+        Uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API" target="_blank">Web Speech API</a>
+        &mdash; audio is processed by <strong>Google</strong> (Chrome) or <strong>Microsoft</strong> (Edge) servers.
+        Requires internet connection.
+      </p>
+
+    </div><!-- /app-body -->
+  </div><!-- /app -->
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
