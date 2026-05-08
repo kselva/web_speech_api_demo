@@ -76,14 +76,6 @@ python -m http.server 3000
 
 Then open `http://localhost:3000` in Chrome or Edge.
 
-## Deploy to GitHub Pages
-
-1. Create a new GitHub repository
-2. Push this folder contents to the `main` branch
-3. Go to repository **Settings** → **Pages**
-4. Set source to `main` branch, folder `/root`
-5. Save - your site will be live at `https://yourusername.github.io/reponame`
-
 > HTTPS is required for microphone access. GitHub Pages provides HTTPS automatically.
 
 ## Privacy
